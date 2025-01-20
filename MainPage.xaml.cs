@@ -11,7 +11,7 @@ namespace PersonalBudgetGushin
         {
             InitializeComponent();
             RefreshCollectionView();
-            DisplayTotalAmount(); // Вызываем метод для отображения суммы
+            DisplayTotalAmount(); 
         }
 
         private void GoToAddTransactionPage(object sender, EventArgs e)
@@ -22,7 +22,7 @@ namespace PersonalBudgetGushin
         private void RefreshData(object sender, EventArgs e)
         {
             RefreshCollectionView();
-            DisplayTotalAmount(); // Обновляем сумму при обновлении данных
+            DisplayTotalAmount(); 
             RefreshV.IsRefreshing = false;
         }
 
@@ -38,10 +38,10 @@ namespace PersonalBudgetGushin
         {
             using (ApplicationDbContext dbContext = new ApplicationDbContext())
             {
-                // Получаем все транзакции из базы данных
+                
                 var transactions = dbContext.Transactions.ToList();
 
-                // Вычисляем сумму на стороне клиента
+                
                 decimal totalAmount = transactions.Sum(t => t.Amount);
 
                 int transactionCount = transactions.Count();
