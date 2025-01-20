@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PersonalBudgetGushin.MainPage"
+             xmlns:entities="clr-namespace:PersonalBudgetGushin.Entities"
+             xmlns:local="clr-namespace:PersonalBudgetGushin"
+             Title="Мои траты">
+
+    <RefreshView x:Name="RefreshV" Refreshing="RefreshData">
+        <ScrollView>
+            <VerticalStackLayout Padding="30, 0" Spacing="25">
+                
+                <Button Clicked="GoToAddTransactionPage" Text="Добавить запись" />
+                <StackLayout>
+                    <Label x:Name="TransactionCountLabel" FontSize="15" FontAttributes="Italic"/>
+                    <Label x:Name="TotalAmountLabel" FontSize="15" FontAttributes="Italic"/>
+                </StackLayout>
+
+                <CollectionView x:Name="TransactionCL">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="{x:Type entities:TransactionEntity}">
+                            <VerticalStackLayout Margin="0,10">
+                                
+                                <HorizontalStackLayout Spacing="5">
+                                    <Label Text="Идентификатор" />
+                                    <Label Text="{Binding Id}" />
+                                </HorizontalStackLayout>
+
+                                <HorizontalStackLayout Spacing="5">
+                                    <Label Text="Заголовок: " />
+                                    <Label Text="{Binding Title}" />
+                                </HorizontalStackLayout>
+
+                                <HorizontalStackLayout Spacing="5">
+                                    <Label Text="Описание: " />
+                                    <Label Text="{Binding Description}" />
+                                </HorizontalStackLayout>
+
+                                <HorizontalStackLayout Spacing="5">
+                                    <Label Text="Потрачено: " />
+                                    <Label Text="{Binding Amount}" />
+                                </HorizontalStackLayout>
+
+                                <HorizontalStackLayout Spacing="5">
+                                    <Label Text="Создана: " />
+                                    <Label Text="{Binding CreatedAt, StringFormat='{0}'}" />
+                                </HorizontalStackLayout>
+                                <BoxView HeightRequest="1" />
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
+
+</ContentPage>
